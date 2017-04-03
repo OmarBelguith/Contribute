@@ -17,7 +17,6 @@ import { RegisterComponent } from './components/register/register.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ValidateService } from './Services/validate.service';
-import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthService } from './Services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
@@ -25,13 +24,13 @@ import { SpinningLoaderComponent } from './components/spinning-loader/spinning-l
 import { NgSpinningPreloader } from 'ng2-spinning-preloader';
 
 
-const appRoutes: Routes =[
-  {path:'home',component:HomeComponent},
-  {path:'register',component:RegisterComponent},
-  {path:'login',component:LoginComponent},
-  {path:'professorsSurveys',component:ProfessorSurveyComponent,canActivate:[AuthGuard]},
-  {path:'administrationSurveys',component:AdministrationSurveyComponent,canActivate:[AuthGuard]},
-  {path:'extraSurveys',component:ExtraSurveysComponent,canActivate:[AuthGuard]},
+const appRoutes: Routes = [
+  {path: 'home', component: HomeComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'professorsSurveys', component: ProfessorSurveyComponent, canActivate: [AuthGuard]},
+  {path: 'administrationSurveys', component: AdministrationSurveyComponent, canActivate: [AuthGuard]},
+  {path: 'extraSurveys', component: ExtraSurveysComponent, canActivate: [AuthGuard]},
   {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent}
 ];
@@ -57,10 +56,9 @@ const appRoutes: Routes =[
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(appRoutes),
-    FlashMessagesModule
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [ValidateService,AuthService,AuthGuard,NgSpinningPreloader],
+  providers: [ValidateService, AuthService, AuthGuard, NgSpinningPreloader],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
