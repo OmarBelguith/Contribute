@@ -1,0 +1,39 @@
+<section id="menu-0" class="mbr-section__container--first">
+
+  <nav class="navbar navbar-dropdown navbar-fixed-top">
+    <div class="container">
+
+      <div class="mbr-table">
+        <div class="mbr-table-cell">
+
+          <div class="navbar-brand">
+            <a routerLinkActive="active" routerLink="/home" class="etl-icon icon-puzzle mbr-iconfont mbr-iconfont-menu navbar-logo" style="color: rgb(41, 105, 176);"></a>
+            <a class="navbar-caption text-info" routerLinkActive="active" routerLink="/home">Contribute</a>
+          </div>
+
+        </div>
+        <div class="mbr-table-cell">
+
+          <button class="navbar-toggler pull-xs-right hidden-md-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+            <div class="hamburger-icon"></div>
+          </button>
+
+          <ul class="nav-dropdown collapse pull-xs-right nav navbar-nav navbar-toggleable-sm" id="exCollapsingNavbar">
+            <li class="nav-item" *ngIf="authService.loggedIn()"><a class="nav-link link" routerLink="/professorsSurveys" routerLinkActive="active">Professors</a></li>
+            <li class="nav-item" *ngIf="authService.loggedIn()"><a class="nav-link link" routerLink="/administrationSurveys" routerLinkActive="active">Administration</a></li>
+            <li class="nav-item" *ngIf="authService.loggedIn()"><a class="nav-link link" routerLink="/extraSurveys" routerLinkActive="active">Extras</a></li>
+            <li class="nav-item nav-btn" *ngIf="!authService.loggedIn()"><a class="nav-link btn btn-black-outline btn-black" routerLink="/login" routerLinkActive="active"><span class="mbri-login mbr-iconfont mbr-iconfont-btn"></span>Login</a></li>
+            <li class="nav-item nav-btn" *ngIf="!authService.loggedIn()"><a class="nav-link btn btn-black-outline btn-black" routerLink="/register" routerLinkActive="active"><span class="mbri-login mbr-iconfont mbr-iconfont-btn"></span>Register</a></li>
+            <li class="nav-item nav-btn" *ngIf="authService.loggedIn()"><a class="nav-link btn btn-black-outline btn-black" href="#" (click)="onLogoutClick()"><span class="mbri-login mbr-iconfont mbr-iconfont-btn"></span>Logout</a></li>
+          </ul>
+          <button hidden="" class="navbar-toggler navbar-close" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+            <div class="close-icon"></div>
+          </button>
+
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+</section>

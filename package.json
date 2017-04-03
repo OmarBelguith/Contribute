@@ -1,0 +1,20 @@
+{
+  "name": "Contribute",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "cors": "*",
+    "express": "*",
+    "jsonwebtoken": "*",
+    "mongoose": "*",
+    "passport": "*",
+    "passport-jwt": "*"
+  },
+  "author": "Belguith Omar",
+  "main": "app.js"
+}
