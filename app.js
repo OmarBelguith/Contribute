@@ -1,46 +1,58 @@
-const express= require('express');
+const express = require('express');
 const path = require('path');
-const bodyparser = require('body-parser');
+const bodyParser = require('body-parser');
 const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
-const users = require('./routes/users');
-const config= require('./config/database');
-//connecting to the database
+const config = require('./config/database');
+
+// Connect To Database
 mongoose.connect(config.database);
-//testing connection
-mongoose.connection.on('error',function(err){
-    console.log('Connected to database' + err);
+
+// On Connection
+mongoose.connection.on('connected', () => {
+    console.log('Connected to database '+config.database);
 });
 
-//starting express
+// On Error
+mongoose.connection.on('error', (err) => {
+    console.log('Database error: '+err);
+});
+
 const app = express();
 
+const users = require('./routes/users');
 
-//Port Number
-const port = process.env.port|| 8080;
-//cors usage for routing and blocking
+// Port Number
+const port = process.env.PORT || 8080;
+
+// CORS Middleware
 app.use(cors());
-//Set static folder
-app.use(express.static(path.join(__dirname,'public')));
-//Body Parser Middleware
-app.use(bodyparser.json());
-//passport Middleware
+
+// Set Static Folder
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Body Parser Middleware
+app.use(bodyParser.json());
+
+// Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
 require('./config/passport')(passport);
-//routing users
-app.use('/users',users);
-//Index route
-app.get('/',function(req,res) {
-    res.send('invalid endpoint');
+
+app.use('/users', users);
+
+// Index Route
+app.get('/', (req, res) => {
+    res.send('Invalid Endpoint');
 });
 
-app.get('/',function(req,res){
-    res.sendFile(path.join(__dirname,'public/index.html'));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public/index.html'));
 });
-//start server
-app.listen(port,function() {
-    console.log('server started on port'+ port);
+
+// Start Server
+app.listen(port, () => {
+    console.log('Server started on port '+port);
 });
